@@ -1,0 +1,49 @@
+{
+  "pesquisadores": [
+    {
+      "nome": "Vera Paiva",
+      "orcid": "0000-0002-8852-3265",
+      "instituicao": "Universidade de São Paulo (USP)",
+      "linha_de_pesquisa": "Vulnerabilidade e violência contra a mulher",
+      "link_orcid": "https://orcid.org/0000-0002-8852-3265"
+    },
+    {
+      "nome": "Ana Sani",
+      "orcid": "0000-0003-1776-2442",
+      "instituicao": "Universidade Lusófona do Porto",
+      "linha_de_pesquisa": "Violência doméstica e feminicídio",
+      "link_orcid": "https://orcid.org/0000-0003-1776-2442"
+    },
+    {
+      "nome": "Adriano Beiras",
+      "orcid": "0000-0002-1388-9326",
+      "instituicao": "Universidade Federal de Santa Catarina (UFSC)",
+      "linha_de_pesquisa": "Homens autores de violência",
+      "link_orcid": "https://orcid.org/0000-0002-1388-9326"
+    },
+    {
+      "nome": "Franciele Marabotti Costa Leite",
+      "orcid": "0000-0002-6171-6972",
+      "instituicao": "Universidade Federal do Espírito Santo (UFES)",
+      "linha_de_pesquisa": "Perfil do parceiro e violência",
+      "link_orcid": "https://orcid.org/0000-0002-6171-6972"
+    }
+  ],
+  "grupos_de_pesquisa": [
+    {
+      "nome": "Gênero e Violência (GPEG)",
+      "instituicao": "Universidade Estadual de Montes Claros (UNIMONTES)",
+      "link": "https://www.posgraduacao.unimontes.br/uploads/sites/2/2020/05/Grupo-de-Pesquisa-G%C3%AAnero-e-Viol%C3%AAncia.pdf"
+    },
+    {
+      "nome": "GP-PEFAS",
+      "instituicao": "Universidade Federal de Santa Maria (UFSM)",
+      "link": "https://www.ufsm.br/grupos/gp-pefas"
+    },
+    {
+      "nome": "LAPVIM",
+      "instituicao": "Universidade Federal do Espírito Santo (UFES)",
+      "link": "https://lapvim.ufes.br/linhas-de-pesquisa"
+    }
+  ]
+}
