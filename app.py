@@ -8,7 +8,7 @@ st.set_page_config(page_title='RedeCRIS Mulher', layout='wide')
 st.title('RedeCRIS Mulher')
 st.subheader('Conectando dados, pesquisas e políticas no enfrentamento à violência de gênero.')
 
-df = pd.read_csv('dados/base_geral.csv')
+df = pd.read_csv('base_geral.csv')
 
 with st.sidebar:
     st.header('Filtros')
