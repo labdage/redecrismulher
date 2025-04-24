@@ -1,29 +1,37 @@
 
 import streamlit as st
-import json
+import pandas as pd
+import plotly.express as px
 
-st.set_page_config(page_title="RedeCRIS Mulher", layout="wide")
+st.set_page_config(page_title='RedeCRIS Mulher', layout='wide')
 
-st.title("🔍 RedeCRIS Mulher")
-st.markdown("Sistema de informação sobre pesquisas e pesquisadores(as) que atuam no enfrentamento à violência contra a mulher no Brasil.")
+st.title('RedeCRIS Mulher')
+st.subheader('Conectando dados, pesquisas e políticas no enfrentamento à violência de gênero.')
 
-# Carregar dados
-with open("redecris_data.json", "r", encoding="utf-8") as f:
-    data = json.load(f)
+df = pd.read_csv('dados/base_geral.csv')
 
-# Pesquisadores
-st.header("👩‍🔬 Pesquisadores(as)")
-for pesq in data["pesquisadores"]:
-    st.subheader(pesq["nome"])
-    st.markdown(f"**Instituição:** {pesq['instituicao']}")
-    st.markdown(f"**Linha de pesquisa:** {pesq['linha_de_pesquisa']}")
-    st.markdown(f"[Ver ORCID]({pesq['link_orcid']})", unsafe_allow_html=True)
-    st.markdown("---")
+with st.sidebar:
+    st.header('Filtros')
+    grupo = st.selectbox('Grupo de Pesquisa', ['Todos'] + sorted(df['Grupo'].dropna().unique().tolist()))
+    instituicao = st.selectbox('Instituição', ['Todas'] + sorted(df['Instituicao'].dropna().unique().tolist()))
+    tema = st.selectbox('Tema', ['Todos'] + sorted(df['Tema'].dropna().unique().tolist()))
+    ano = st.selectbox('Ano', ['Todos'] + sorted(df['Ano'].dropna().astype(str).unique().tolist()))
 
-# Grupos de Pesquisa
-st.header("🏛️ Grupos de Pesquisa")
-for grupo in data["grupos_de_pesquisa"]:
-    st.subheader(grupo["nome"])
-    st.markdown(f"**Instituição:** {grupo['instituicao']}")
-    st.markdown(f"[Acessar link oficial]({grupo['link']})", unsafe_allow_html=True)
-    st.markdown("---")
+filtered = df.copy()
+if grupo != 'Todos':
+    filtered = filtered[filtered['Grupo'] == grupo]
+if instituicao != 'Todas':
+    filtered = filtered[filtered['Instituicao'] == instituicao]
+if tema != 'Todos':
+    filtered = filtered[filtered['Tema'] == tema]
+if ano != 'Todos':
+    filtered = filtered[filtered['Ano'].astype(str) == ano]
+
+st.dataframe(filtered)
+
+st.subheader('Distribuição Geográfica')
+if 'UF' in filtered.columns:
+    mapa = filtered.groupby('UF').size().reset_index(name='Contagem')
+    fig = px.choropleth(locations=mapa['UF'], locationmode='ISO-3166-2', color=mapa['Contagem'],
+                        scope='south america', title='Produção por UF')
+    st.plotly_chart(fig, use_container_width=True)
